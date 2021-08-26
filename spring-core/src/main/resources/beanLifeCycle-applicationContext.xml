@@ -13,12 +13,16 @@
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
     </bean>
+    <bean id="customProcessor"
+          class="br.com.pedropareschi.springdemo.MyCustomBeanProcessor">
+    </bean>
     <bean id="myFortuneService"
     class="br.com.pedropareschi.springdemo.RandomFortuneService">
     </bean>
     <bean id= "myCoach"
     class="br.com.pedropareschi.springdemo.TrackCoach"
-    scope="prototype">
+    init-method="doMyStartupStuff"
+    scope="prototype" >
         <constructor-arg ref="myFortuneService"/>
     </bean>
 </beans>
