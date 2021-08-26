@@ -1,6 +1,8 @@
 package br.com.pedropareschi.springdemo;
 
-public class SoccerCoach implements Coach{
+import org.springframework.beans.factory.DisposableBean;
+
+public class SoccerCoach implements Coach, DisposableBean {
     @Override
     public String getDailyWorkout() {
         return "score some goals";
@@ -8,6 +10,15 @@ public class SoccerCoach implements Coach{
 
     @Override
     public String getDailyFortune() {
-        return null;
+        return "Lucky day";
+    }
+
+    public void doWarmUp(){
+        System.out.println("do warm up");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("do stretching");
     }
 }
