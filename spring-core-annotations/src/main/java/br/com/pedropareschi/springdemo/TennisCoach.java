@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
-public class TennisCoach implements Coach {
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
+@Component
+public class TennisCoach implements Coach {
 
     private FortuneService fortuneService;
 
@@ -26,6 +27,16 @@ public class TennisCoach implements Coach {
     @Autowired
     public TennisCoach(@Qualifier("fileFortuneService") FortuneService fortuneService) {
         this.fortuneService = fortuneService;
+    }
+
+    @PostConstruct
+    public void doMyStartupStuff(){
+        System.out.println(">> TennisCoach: inside of doMyStartupStuff()");
+    }
+
+    @PreDestroy
+    public void doMyCleanupStuff(){
+        System.out.println(">> TennisCoach: inside of doMyCleanupStuff()");
     }
 
 
