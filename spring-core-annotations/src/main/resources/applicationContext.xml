@@ -9,6 +9,7 @@
 
     <!-- Define your beans here -->
     <context:component-scan base-package="br.com.pedropareschi.springdemo"/>
+    <context:property-placeholder location="classpath:sport.properties"/>
     <bean id="myLoggerConfig" class="br.com.pedropareschi.springdemo.MyLoggerConfig" init-method="initLogger">
         <property name="rootLoggerLevel" value="FINE" />
         <property name="printedLoggerLevel" value="FINE"/>
