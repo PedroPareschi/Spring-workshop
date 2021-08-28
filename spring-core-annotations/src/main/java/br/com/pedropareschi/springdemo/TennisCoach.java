@@ -19,8 +19,8 @@ public class TennisCoach implements Coach{
 
 
     @Autowired
-    public void setFortuneService(FortuneService fortuneService) {
-        System.out.println(">> inside setFortuneService() method");
+    public void doSomeCrazyStuff(FortuneService fortuneService) {
+        System.out.println(">> inside doSomeCrazyStuff() method");
         this.fortuneService = fortuneService;
     }
 
