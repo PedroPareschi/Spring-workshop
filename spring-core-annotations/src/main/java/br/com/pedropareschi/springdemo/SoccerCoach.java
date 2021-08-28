@@ -8,4 +8,10 @@ public class SoccerCoach implements Coach{
     public String getDailyWorkout() {
         return "score some goals";
     }
+
+    @Override
+    public String getDailyFortune() {
+        return null;
+    }
+
 }
