@@ -3,6 +3,7 @@ package br.com.pedropareschi.springdemo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -18,7 +19,8 @@ public class FileFortuneService implements FortuneService{
 
     private final Random random = new Random();
 
-    public FileFortuneService() {
+    @PostConstruct
+    public void postConstruct() {
         try (BufferedReader reader = new BufferedReader(new FileReader("src/main/java/br/com/pedropareschi/springdemo/fortune.txt"))){
             String line;
             while ((line = reader.readLine()) != null){
