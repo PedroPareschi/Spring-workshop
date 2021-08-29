@@ -1,5 +1,6 @@
 package br.com.pedropareschi.springdemo;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +11,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-public class TennisCoach implements Coach {
+@Scope("prototype")
+public class TennisCoach implements Coach, DisposableBean {
 
     private FortuneService fortuneService;
 
@@ -34,10 +36,10 @@ public class TennisCoach implements Coach {
         System.out.println(">> TennisCoach: inside of doMyStartupStuff()");
     }
 
-    @PreDestroy
-    public void doMyCleanupStuff(){
-        System.out.println(">> TennisCoach: inside of doMyCleanupStuff()");
-    }
+//    @PreDestroy
+//    public void doMyCleanupStuff(){
+//        System.out.println(">> TennisCoach: inside of doMyCleanupStuff()");
+//    }
 
 
 //    @Autowired
@@ -70,5 +72,10 @@ public class TennisCoach implements Coach {
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println(">> TennisCoach: inside of destroy()");
     }
 }
